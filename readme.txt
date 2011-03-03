@@ -16,8 +16,6 @@ Nivo Slider for WordPress plugin is based on S3Slider developed by Vinicius Mass
 3. Enable or disable navigation arrows, use left & right on keyboard, Show only the navigation arrows when mouse is on the slide, Stop animation while the mouse is on the slide, Force manual transitions;
 4. Edit a text to be shown on each image;
 
-You can see the Nivo Slider for WordPress in action here: <a href="http://www.marcelotorresweb.com/nivo-slider-for-wordpress/">here</a>.
-
 == Installation ==
 
 It's easy to install.
@@ -28,7 +26,7 @@ It's easy to install.
 
 == Frequently Asked Questions ==
 
-Nothing here until now. Visit the <a href="http://www.marcelotorresweb.com/nivo-slider-for-wordpress/">plugin website</a> for more info.
+Nothing here until now..
 
 == Screenshots ==
 
