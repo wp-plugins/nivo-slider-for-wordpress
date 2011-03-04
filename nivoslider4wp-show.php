@@ -6,9 +6,9 @@
 		else
 			$url = get_option('siteurl') . '/wp-content/plugins/' . plugin_basename(dirname(__FILE__));
 		global $wpdb;
-		$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivoslider4wp/';
+		$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/';
 		$ns4wp_pluginurl = $url;
-		$ns4wp_filesdir = ABSPATH.'wp-content/plugins/nivoslider4wp/files/';
+		$ns4wp_filesdir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/files/';
 		$ns4wp_filesurl = $url.'/files/';
 
 	?>
@@ -29,8 +29,8 @@
 	/*conteudo que ora para dentro do <head>*/
 	function js_NivoSlider(){
 	?>
-<script type="text/javascript" src="<?php echo get_option('siteurl') . '/wp-content/plugins/nivoslider4wp/js/jquery.min.js';?>"></script>
-<script type="text/javascript" src="<?php echo get_option('siteurl') . '/wp-content/plugins/nivoslider4wp/js/jquery.nivo.slider.js';?>"></script>
+<script type="text/javascript" src="<?php echo get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/js/jquery.min.js';?>"></script>
+<script type="text/javascript" src="<?php echo get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/js/jquery.nivo.slider.js';?>"></script>
 <script type="text/javascript">
 $(window).load(function() {
 	$('#slider').nivoSlider({
@@ -58,7 +58,7 @@ $(window).load(function() {
 	});
 });
 </script>
-<link rel="stylesheet" type="text/css" href="<?php echo get_option('siteurl') . '/wp-content/plugins/nivoslider4wp/css/nivoslider4wp.css'?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/css/nivoslider4wp.css'?>" />
 <style>
 	.nivoSlider {
 	width:<?php echo get_option('nivoslider4wp_width'); ?>px;

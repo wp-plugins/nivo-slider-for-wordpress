@@ -5,9 +5,9 @@
 	else
 		$url = get_option('siteurl') . '/wp-content/plugins/' . plugin_basename(dirname(__FILE__));
 ?>
-<?php $ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivoslider4wp/'; ?>
+<?php $ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/'; ?>
 <?php $ns4wp_pluginurl = $url; ?>
-<?php $ns4wp_filesdir = ABSPATH.'wp-content/plugins/nivoslider4wp/files/'; ?>
+<?php $ns4wp_filesdir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/files/'; ?>
 <?php $ns4wp_filesurl = $url.'/files/'; ?>
 <?php 
 		   $ns4wp_x = "empty"; 
