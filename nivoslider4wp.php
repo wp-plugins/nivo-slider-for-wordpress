@@ -16,15 +16,15 @@
 
 	global $ns4wp_plugindir;
 	
-	$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivoslider4wp/';
+	$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/';
 	
-	load_plugin_textdomain ( 'nivoslider4wp' , false, 'nivoslider4wp/lang'  );
+	load_plugin_textdomain ( 'nivoslider4wp' , false, 'nivo-slider-for-wordpress/lang'  );
 	
 	function nivoslider4wp_install() {
 		global $wpdb;
 		/*adiciona menu e submenus*/
-		add_menu_page('Nivo Slider for WordPress', __('Nivo Slider For WordPress'), 'read', __FILE__, 'nivoslider4wp_panel', get_option('siteurl') . '/wp-content/plugins/nivoslider4wp/img/menu.png');
-		$plugin_addimages = add_submenu_page(__FILE__ , __('Add image', 'nivoslider4wp'), __('Add image', 'nivoslider4wp'), 'read', 'nivoslider4wp/nivoslider4wp.php');
+		add_menu_page('Nivo Slider for WordPress', __('Nivo Slider For WordPress'), 'read', __FILE__, 'nivoslider4wp_panel', get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/img/menu.png');
+		$plugin_addimages = add_submenu_page(__FILE__ , __('Add image', 'nivoslider4wp'), __('Add image', 'nivoslider4wp'), 'read', 'nivo-slider-for-wordpress/nivoslider4wp.php');
 		$plugin_options = add_submenu_page(__FILE__ , __('Options', 'nivoslider4wp'), __('Options', 'nivoslider4wp'), 'read', 'nivoslider4wp-options', 'nivoslider4wp_option');
 
 		/*cria tabela no banco de dados*/

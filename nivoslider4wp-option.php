@@ -7,7 +7,7 @@
 		{
 		$url = get_option('siteurl') . '/wp-content/plugins/' . plugin_basename(dirname(__FILE__));
 		}
-		$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivoslider4wp/';
+		$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/';
 		$ns4wp_pluginurl = $url;
 ?>
 
