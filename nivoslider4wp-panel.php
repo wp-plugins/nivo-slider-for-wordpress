@@ -323,9 +323,9 @@
 			<?php } ?>
 			</td>
           <td class="manage-column column-numero"><small> 
-		  <a href="admin.php?page=nivoslider4wp/nivoslider4wp.php&edit=<?php echo $item->nivoslider4wp_id; ?>">
+		  <a href="admin.php?page=nivo-slider-for-wordpress/nivoslider4wp.php&edit=<?php echo $item->nivoslider4wp_id; ?>">
             <?php _e('Edit','nivoslider4wp'); ?>
-            </a> | <a href="admin.php?page=nivoslider4wp/nivoslider4wp.php&remove=<?php echo $item->nivoslider4wp_id; ?>">
+            </a> | <a href="admin.php?page=nivo-slider-for-wordpress/nivoslider4wp.php&remove=<?php echo $item->nivoslider4wp_id; ?>">
             <?php _e('Remove','nivoslider4wp'); ?>
             </a><br/>
             <form id="order_<?php echo $item->nivoslider4wp_id; ?>" name="order_<?php echo $item->nivoslider4wp_id; ?>" class="order" method="post">
