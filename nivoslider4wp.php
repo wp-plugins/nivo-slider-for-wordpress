@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: Nivo Slider for WordPress
 	Description: Nivo Slider for WordPress plugin is based on S3Slider developed by Vinicius Massuchetto, adapted for their use JQuery plugin NivoSlider.
-	Version: 0.2
+	Version: 0.1
 	Author: Marcelo Torres
 	Author URI: http://www.marcelotorresweb.com/
 	*/
