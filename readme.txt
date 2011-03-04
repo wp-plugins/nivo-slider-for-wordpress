@@ -1,5 +1,5 @@
 === Nivo Slider for WordPress ===
-Donate link: http://www.marcelotorresweb.com/demonstracoes/nivo-slider-for-wordpress/
+Donate link: http://www.marcelotorresweb.com/nivo-slider-for-wordpress/
 Tags: Nivo Slider, jquery, slide, javascript, animation, banner
 Requires at least: 3.0
 Tested up to: 3.1
