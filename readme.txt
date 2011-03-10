@@ -3,7 +3,7 @@ Donate link: http://www.marcelotorresweb.com/nivo-slider-for-wordpress/
 Tags: Nivo Slider, jquery, slide, javascript, animation, banner
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.2
+Stable tag: 0.1
 Contributors: marcelotorres
 
 Plugin to manage and generate a nice image sliding effect in your site.
@@ -40,7 +40,3 @@ Nothing here until now..
 = 0.1 =
 
 * Plugin released, that's it.
-
-= 0.2 =
-
-* fix in the images order.
