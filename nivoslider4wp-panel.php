@@ -297,7 +297,7 @@
 					var orderId=$b(this).parent().find("input[name='order_id']").attr("value");
 					$b.ajax({
 					   type: "POST",
-					   url: '<?php bloginfo('url'); ?>/wp-admin/admin.php?page=nivoslider4wp/nivoslider4wp.php',
+					   url: '<?php bloginfo('url'); ?>/wp-admin/admin.php?page=nivo-slider-for-wordpress/nivoslider4wp.php',
 					   data: "order_value="+index+"&order_id="+orderId,
 					   success: function(msg){
 					   }
@@ -329,9 +329,9 @@
             <?php _e('Remove','nivoslider4wp'); ?>
             </a><br/>
             <form id="order_<?php echo $item->nivoslider4wp_id; ?>" name="order_<?php echo $item->nivoslider4wp_id; ?>" class="order" method="post">
-              <input type="text" class="order_value" name="order_value" value="<?php echo $item->nivoslider4wp_order; ?>" />
+              <!--<input type="text" class="order_value" name="order_value" value="<?php /*echo $item->nivoslider4wp_order;*/ ?>" />-->
               <input type="hidden" name="order_id" value="<?php echo $item->nivoslider4wp_id; ?>" />
-              <input type="submit" value="Save Order" />
+              <!--<input type="submit" value="Save Order" />-->
             </form>
             </small></td>
         </tr>
