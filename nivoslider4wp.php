@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: Nivo Slider for WordPress
 	Description: Nivo Slider for WordPress plugin is based on S3Slider developed by Vinicius Massuchetto, adapted for their use JQuery plugin NivoSlider.
-	Version: 0.2
+	Version: 0.3
 	Author: Marcelo Torres
 	Author URI: http://www.marcelotorresweb.com/
 	*/
@@ -24,7 +24,7 @@
 		global $wpdb;
 		/*adiciona menu e submenus*/
 		add_menu_page('Nivo Slider for WordPress', __('Nivo Slider For WordPress'), 'read', __FILE__, 'nivoslider4wp_panel', get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/img/menu.png');
-		$plugin_addimages = add_submenu_page(__FILE__ , __('Add image', 'nivoslider4wp'), __('Add image', 'nivoslider4wp'), 'read', 'nivo-slider-for-wordpress/nivoslider4wp.php');
+		$plugin_addimages = add_submenu_page(__FILE__ , __('Add/Edit image', 'nivoslider4wp'), __('Add/Edit image', 'nivoslider4wp'), 'read', 'nivo-slider-for-wordpress/nivoslider4wp.php');
 		$plugin_options = add_submenu_page(__FILE__ , __('Options', 'nivoslider4wp'), __('Options', 'nivoslider4wp'), 'read', 'nivoslider4wp-options', 'nivoslider4wp_option');
 
 		/*cria tabela no banco de dados*/
@@ -40,6 +40,7 @@
 			`nivoslider4wp_w` INT,
 			`nivoslider4wp_h` INT,
 			`nivoslider4wp_image_link` TEXT,
+			`nivoslider4wp_image_status` CHAR(1),
 		PRIMARY KEY ( `nivoslider4wp_id` ));";
 		$wpdb->query($query);
 
@@ -47,6 +48,8 @@
 		add_option('nivoslider4wp_width', 640);
 		add_option('nivoslider4wp_height', 219);
 		
+		add_option('nivoslider4wp_colsBox', 4);
+		add_option('nivoslider4wp_rowsBox', 2);
 		add_option('nivoslider4wp_animSpeed', 500);
 		add_option('nivoslider4wp_effect', 'random');
 		add_option('nivoslider4wp_pauseTime', 3000);

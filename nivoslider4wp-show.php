@@ -29,35 +29,40 @@
 	/*conteudo que ora para dentro do <head>*/
 	function js_NivoSlider(){
 	?>
-<script type="text/javascript" src="<?php echo get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/js/jquery.min.js';?>"></script>
-<script type="text/javascript" src="<?php echo get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/js/jquery.nivo.slider.js';?>"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/js/jquery.nivo.slider.pack.js';?>"></script>
 <script type="text/javascript">
 $(window).load(function() {
-	$('#slider').nivoSlider({
-		effect:'<?php echo get_option('nivoslider4wp_effect'); ?>',
-		slices:15,
-		animSpeed:<?php echo get_option('nivoslider4wp_animSpeed'); ?>,
-		pauseTime:<?php echo get_option('nivoslider4wp_pauseTime'); ?>,
-		startSlide:0, //Set starting Slide (0 index)
-		directionNav:<?php echo get_option('nivoslider4wp_directionNav'); ?>, //Next & Prev
+    $('#slider').nivoSlider({
+        effect:'<?php echo get_option('nivoslider4wp_effect'); ?>',
+        slices:15, // For slice animations
+        boxCols: <?php echo get_option('nivoslider4wp_colsBox'); ?>, // For box animations
+        boxRows: <?php echo get_option('nivoslider4wp_rowsBox'); ?>, // For box animations
+        animSpeed:<?php echo get_option('nivoslider4wp_animSpeed'); ?>, // Slide transition speed
+        pauseTime:<?php echo get_option('nivoslider4wp_pauseTime'); ?>, // How long each slide will show
+        startSlide:0, // Set starting Slide (0 index)
+        directionNav:<?php echo get_option('nivoslider4wp_directionNav'); ?>, //Next & Prev
 		directionNavHide:<?php echo get_option('nivoslider4wp_directionNavHide'); ?>, //Only show on hover
-		controlNav:true, //1,2,3...
-		controlNavThumbs:false, //Use thumbnails for Control Nav
-		controlNavThumbsFromRel:false, //Use image rel for thumbs
-		controlNavThumbsSearch: '.jpg', //Replace this with...
-		controlNavThumbsReplace: '_thumb.jpg', //...this in thumb Image src
-		keyboardNav:<?php echo get_option('nivoslider4wp_keyboardNav'); ?>, //Use left & right arrows
+        controlNav:true, // 1,2,3... navigation
+        controlNavThumbs:false, // Use thumbnails for Control Nav
+        controlNavThumbsFromRel:false, // Use image rel for thumbs
+        controlNavThumbsSearch: '.jpg', // Replace this with...
+        controlNavThumbsReplace: '_thumb.jpg', // ...this in thumb Image src
+        keyboardNav:<?php echo get_option('nivoslider4wp_keyboardNav'); ?>, //Use left & right arrows
 		pauseOnHover:<?php echo get_option('nivoslider4wp_pauseOnHover'); ?>, //Stop animation while hovering
 		manualAdvance:<?php echo get_option('nivoslider4wp_manualAdvance'); ?>, //Force manual transitions
 		captionOpacity:<?php echo get_option('nivoslider4wp_captionOpacity'); ?>, //Universal caption opacity
-		beforeChange: function(){},
-		afterChange: function(){},
-		slideshowEnd: function(){}, //Triggers after all slides have been shown
-		lastSlide: function(){}, //Triggers when last slide is shown
-		afterLoad: function(){} //Triggers when slider has loaded
-	});
+        prevText: 'Prev', // Prev directionNav text
+        nextText: 'Next', // Next directionNav text
+        beforeChange: function(){}, // Triggers before a slide transition
+        afterChange: function(){}, // Triggers after a slide transition
+        slideshowEnd: function(){}, // Triggers after all slides have been shown
+        lastSlide: function(){}, // Triggers when last slide is shown
+        afterLoad: function(){} // Triggers when slider has loaded
+    });
 });
 </script>
+
 <link rel="stylesheet" type="text/css" href="<?php echo get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/css/nivoslider4wp.css'?>" />
 <style>
 	.nivoSlider {

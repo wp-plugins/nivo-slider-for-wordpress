@@ -13,7 +13,39 @@
 
 <!-- importa o css da area administrativa, assim como o jquery-->
 <link rel="stylesheet" type="text/css" href="<?php echo $ns4wp_pluginurl; ?>/css/nivoslider4wp-painel.css" />
-<script type="text/javascript" src="<?php echo $ns4wp_pluginurl; ?>/js/jquery.min.js"></script>
+<script src="<?php echo $ns4wp_pluginurl; ?>/js/jquery.min.js" type="text/javascript"></script>
+
+<!-- importa JPicker-->
+<link rel="Stylesheet" type="text/css" href="<?php echo $ns4wp_pluginurl; ?>/css/jPicker.css" />
+<script src="<?php echo $ns4wp_pluginurl; ?>/js/jpicker-1.1.6.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var $z = jQuery.noConflict();
+
+	$z(function()
+	{
+		$z.fn.jPicker.defaults.images.clientPath='<?php echo $ns4wp_pluginurl; ?>/css/images/';
+		$z('.Multiple').jPicker({window:{title:'<?php _e('Drag Markers To Pick A Color','nivoslider4wp'); ?>'}});
+	});
+</script>
+	
+<script type="text/javascript">
+	var $d = jQuery.noConflict();
+	$d(document).ready(function () {
+		$d("#nivoslider4wp_effect").change(function () {
+			$d("#nivoslider4wp_effect option:selected").each(function ()
+			{
+				if($d(this).attr("id") == "boxeffect")
+				{
+					$d("#nivoslider4wp_colsBox, #nivoslider4wp_rowsBox").show('fast');
+				}
+				else
+				{
+					$d("#nivoslider4wp_colsBox, #nivoslider4wp_rowsBox").hide('fast');
+				}
+			});
+		}).change();
+	});
+</script>
 
 <?php
 	/* atualiza os valores digitados nos campos*/
@@ -21,8 +53,10 @@
 	update_option('nivoslider4wp_width', $_POST['nivoslider4wp_width']);
 	update_option('nivoslider4wp_height', $_POST['nivoslider4wp_height']);
 	
-	update_option('nivoslider4wp_animSpeed', $_POST['nivoslider4wp_animSpeed']);
-	update_option('nivoslider4wp_effect', $_POST['nivoslider4wp_effect']);			
+	update_option('nivoslider4wp_colsBox', $_POST['nivoslider4wp_colsBox']);
+	update_option('nivoslider4wp_rowsBox', $_POST['nivoslider4wp_rowsBox']);
+	update_option('nivoslider4wp_effect', $_POST['nivoslider4wp_effect']);
+	update_option('nivoslider4wp_animSpeed', $_POST['nivoslider4wp_animSpeed']);			
 	update_option('nivoslider4wp_pauseTime', $_POST['nivoslider4wp_pauseTime']);			
 	update_option('nivoslider4wp_directionNav', $_POST['nivoslider4wp_directionNav']);			
 	update_option('nivoslider4wp_directionNavHide', $_POST['nivoslider4wp_directionNavHide']);			
@@ -38,18 +72,15 @@
 
 <div class="wrap">
 <h2 id="all-schemes"><?php _e('Nivo Slider For WordPress - Options','nivoslider4wp'); ?></h2> 
-  <link rel="Stylesheet" type="text/css" href="<?php echo $ns4wp_pluginurl; ?>/css/jPicker.css" />
-  <script src="<?php echo $ns4wp_pluginurl; ?>/js/jpicker-1.1.5.min.js" type="text/javascript"></script>
-  <script type="text/javascript">
-    var $z = jQuery.noConflict();
-	$z(function()
-      {
-        $z.fn.jPicker.defaults.images.clientPath='<?php echo $ns4wp_pluginurl; ?>/css/images/';
-        $z('.Multiple').jPicker({window:{title:'<?php _e('Drag Markers To Pick A Color','nivoslider4wp'); ?>'}});
-      });
-  </script>
+<?php
+if (isset($_POST['options'])) {
+	echo "<div class=\"alert\">";
+	_e('options updated', 'nivoslider4wp');
+	echo "</div>";
+	}
+?>
     <div id="nivoslider4wp_options" class="nivoslider4wp_box">
-    <form name="nivoslider4wp_options" method="post" action="<?php bloginfo('url') ?>/wp-admin/admin.php?page=nivoslider4wp-options">
+    <form name="nivoslider4wp_options" method="post" action="<?php bloginfo('wpurl') ?>/wp-admin/admin.php?page=nivoslider4wp-options">
 		<fieldset>
 		<legend><?php _e('Size of crop (will also be the size of the slider)','nivoslider4wp'); ?></legend>
 			<small><?php _e('If you have any photos uploaded have to cut out pictures again','nivoslider4wp'); ?></small>
@@ -70,6 +101,35 @@
 					<option value="sliceUpLeft" <?php if(get_option('nivoslider4wp_effect') == 'sliceUpLeft'){echo 'selected';}?>>sliceUpLeft</option>
 					<option value="sliceUpDown" <?php if(get_option('nivoslider4wp_effect') == 'sliceUpDown'){echo 'selected';}?>>sliceUpDown</option>
 					<option value="sliceUpDownLeft" <?php if(get_option('nivoslider4wp_effect') == 'sliceUpDownLeft'){echo 'selected';}?>>sliceUpDownLeft</option>
+					<option value="slideInRight" <?php if(get_option('nivoslider4wp_effect') == 'slideInRight'){echo 'selected';}?>>slideInRight</option>
+					<option value="slideInLeft" <?php if(get_option('nivoslider4wp_effect') == 'slideInLeft'){echo 'selected';}?>>slideInLeft</option>
+					<option value="boxRandom" id="boxeffect" <?php if(get_option('nivoslider4wp_effect') == 'boxRandom'){echo 'selected';}?>>boxRandom</option>
+					<option value="boxRain" id="boxeffect" <?php if(get_option('nivoslider4wp_effect') == 'boxRain'){echo 'selected';}?>>boxRain</option>
+					<option value="boxRainReverse" id="boxeffect" <?php if(get_option('nivoslider4wp_effect') == 'boxRainReverse'){echo 'selected';}?>>boxRainReverse</option>
+					<option value="boxRainGrow" id="boxeffect" <?php if(get_option('nivoslider4wp_effect') == 'boxRainGrow'){echo 'selected';}?>>boxRainGrow</option>
+					<option value="boxRainGrowReverse" id="boxeffect" <?php if(get_option('nivoslider4wp_effect') == 'boxRainGrowReverse'){echo 'selected';}?>>boxRainGrowReverse</option>
+				</select>
+			</label>
+			<label for="nivoslider4wp_colsBox" id="nivoslider4wp_colsBox" style="display:none;"><?php _e('Numbers cols for box animations','nivoslider4wp'); ?>
+				<select name="nivoslider4wp_colsBox" id="nivoslider4wp_colsBox">
+				<?php for($i = 1; $i <= 10;$i++)
+					{
+				?>
+					<option value="<?php echo $i;?>" <?php if(get_option('nivoslider4wp_colsBox') == ''.$i.''){echo 'selected';}?>><?php echo $i;?></option>
+				<?php	
+					}
+				?>
+				</select>
+			</label>
+			<label for="nivoslider4wp_rowsBox" id="nivoslider4wp_rowsBox" style="display:none;"><?php _e('Numbers rows for box animations','nivoslider4wp'); ?>
+				<select name="nivoslider4wp_rowsBox" id="nivoslider4wp_rowsBox">
+				<?php for($i = 1; $i <= 5;$i++)
+					{
+				?>
+					<option value="<?php echo $i;?>" <?php if(get_option('nivoslider4wp_rowsBox') == ''.$i.''){echo 'selected';}?>><?php echo $i;?></option>
+				<?php	
+					}
+				?>
 				</select>
 			</label>
 			<label for="nivoslider4wp_animSpeed"><?php _e('Slide transition speed','nivoslider4wp'); ?>:<input type="text" name="nivoslider4wp_animSpeed" id="nivoslider4wp_animSpeed" value="<?php echo get_option('nivoslider4wp_animSpeed'); ?>" />ms <?php _e('(default 500ms)','nivoslider4wp');?></label>
@@ -106,6 +166,10 @@
     </form>
   </div>
   	<?php if(current_user_can(10)){?>
+	<div id="nivoslider4wp_credits" class="nivoslider4wp_box">
+		<h3><?php _e('how use on templates','nivoslider4wp'); ?></h3>
+		<p><?php _e('Place this: ','nivoslider4wp'); ?> <code>&lt;?php if (function_exists(nivoslider4wp_show())) { nivoslider4wp_show(); } ?&gt;</code> <?php _e('in your templates ','nivoslider4wp'); ?></p>
+	</div>
   <div id="nivoslider4wp_credits" class="nivoslider4wp_box">
 	<h3><?php _e('Credits and Donation','nivoslider4wp'); ?></h3>
 	<ul>

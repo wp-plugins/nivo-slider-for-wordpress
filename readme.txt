@@ -2,8 +2,8 @@
 Donate link: http://www.marcelotorresweb.com/nivo-slider-for-wordpress/
 Tags: Nivo Slider, jquery, slide, javascript, animation, banner
 Requires at least: 3.0
-Tested up to: 3.1
-Stable tag: 0.2
+Tested up to: 3.1.1
+Stable tag: 0.3
 Contributors: marcelotorres
 
 Plugin to manage and generate a nice image sliding effect in your site.
@@ -23,7 +23,7 @@ It's easy to install.
 
 1. Extract `nivoslider4wp.zip` and upload the folder `nivoslider4wp` to the `/wp-content/plugins/` directory;
 2. Activate the plugin through the `Plugins` menu in WordPress
-3. Place something like `<?php if (function_exists(nivoslider4wp_show())) { nivoslider4wp_show(); } ?>` in your templates
+3. Place this `<?php if (function_exists(nivoslider4wp_show())) { nivoslider4wp_show(); } ?>` in your templates
 
 == Frequently Asked Questions ==
 
@@ -44,3 +44,10 @@ Nothing here until now..
 = 0.2 =
 
 * fix in the images order.
+
+= 0.3 =
+
+* Fixed in the plugins(Nivo Slider and JPicker) images.
+* Updated jQuery Nivo Slider for version v2.5.1
+* Added news effects - boxRandom, boxRain, boxRainReverse, boxRainGrow, boxRainGrowReverse
+* fixed and added other small bugs and updates
