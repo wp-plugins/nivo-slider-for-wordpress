@@ -9,6 +9,8 @@
 		}
 		$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/';
 		$ns4wp_pluginurl = $url;
+		$ns4wp_filesdir = ABSPATH.'/wp-content/nivoslider4wp_files/';
+		$ns4wp_filesurl = get_option('siteurl').'/wp-content/nivoslider4wp_files/';
 ?>
 
 <!-- importa o css da area administrativa, assim como o jquery-->
@@ -168,7 +170,7 @@ if (isset($_POST['options'])) {
   	<?php if(current_user_can(10)){?>
 	<div id="nivoslider4wp_credits" class="nivoslider4wp_box">
 		<h3><?php _e('how use on templates','nivoslider4wp'); ?></h3>
-		<p><?php _e('Place this: ','nivoslider4wp'); ?> <code>&lt;?php if (function_exists(nivoslider4wp_show())) { nivoslider4wp_show(); } ?&gt;</code> <?php _e('in your templates ','nivoslider4wp'); ?></p>
+		<p><?php _e('Place this: ','nivoslider4wp'); ?> <code>&lt;?php if (function_exists('nivoslider4wp_show')) { nivoslider4wp_show(); } ?&gt;</code> <?php _e('in your templates ','nivoslider4wp'); ?></p>
 	</div>
   <div id="nivoslider4wp_credits" class="nivoslider4wp_box">
 	<h3><?php _e('Credits and Donation','nivoslider4wp'); ?></h3>

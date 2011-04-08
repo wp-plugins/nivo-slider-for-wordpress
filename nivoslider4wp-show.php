@@ -8,8 +8,8 @@
 		global $wpdb;
 		$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/';
 		$ns4wp_pluginurl = $url;
-		$ns4wp_filesdir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/files/';
-		$ns4wp_filesurl = $url.'/files/';
+		$ns4wp_filesdir = ABSPATH.'/wp-content/nivoslider4wp_files/';
+		$ns4wp_filesurl = get_option('siteurl').'/wp-content/nivoslider4wp_files/';
 
 	?>
 		<div id="slider">
