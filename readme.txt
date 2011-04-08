@@ -7,10 +7,10 @@ Stable tag: 0.3.1
 Contributors: marcelotorres
 
 Plugin to manage and generate a nice image sliding effect in your site.
-<strong>[IMPORTANT] problem of exclusion images in the folder "files " after the update was corrected, the folder "files" was be replaced by "nivoslider4wp_files" out of plugin folder, the folder "nivoslider4wp_files" is located in "wp-content". COPY IMAGES OF FOLDER "files" TO FOLDER "nivoslider4wp_files".</strong>
 
 == Description ==
 
+[IMPORTANT] problem of exclusion images in the folder "files " after the update was corrected, the folder "files" was be replaced by "nivoslider4wp_files" out of plugin folder, the folder "nivoslider4wp_files" is located in "wp-content". COPY IMAGES OF FOLDER "files" TO FOLDER "nivoslider4wp_files".
 Nivo Slider for WordPress plugin is based on S3Slider developed by Vinicius Massuchetto, adapted for their use <a href="http://nivo.dev7studios.com/">JQuery Nivo Slider</a>.
 
 1. Upload and crop images, define captions and links;
