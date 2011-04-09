@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: Nivo Slider for WordPress
 	Description: Nivo Slider for WordPress plugin is based on S3Slider developed by Vinicius Massuchetto, adapted for their use JQuery plugin NivoSlider.
-	Version: 0.3.1
+	Version: 0.3
 	Author: Marcelo Torres
 	Author URI: http://www.marcelotorresweb.com/
 	*/
@@ -21,12 +21,6 @@
 	load_plugin_textdomain ( 'nivoslider4wp' , false, 'nivo-slider-for-wordpress/lang'  );
 	
 	function nivoslider4wp_install() {
-	$nivoslider4wp_files = ABSPATH."wp-content/nivoslider4wp_files";
-
-	if (!file_exists($nivoslider4wp_files)) {
-		umask(0); 
-		mkdir($nivoslider4wp_files, 0777, true) or die("erro ao criar a pasta em" . $nivoslider4wp_files);
-	}
 		global $wpdb;
 		/*adiciona menu e submenus*/
 		add_menu_page('Nivo Slider for WordPress', __('Nivo Slider For WordPress'), 'read', __FILE__, 'nivoslider4wp_panel', get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/img/menu.png');
