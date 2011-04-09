@@ -25,7 +25,7 @@
 
 	if (!file_exists($nivoslider4wp_files)) {
 		umask(0); 
-		mkdir($nivoslider4wp_files, 0777, true) or die("erro ao criar a pasta em" . $nivoslider4wp_files);
+		mkdir($nivoslider4wp_files, 0777, true) or die("erro ao criar a pasta em " . $nivoslider4wp_files. "defina permiss&atilde;o 777");
 	}
 		global $wpdb;
 		/*adiciona menu e submenus*/
