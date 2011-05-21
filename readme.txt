@@ -7,7 +7,6 @@ Stable tag: 0.3.2
 Contributors: marcelotorres
 
 Plugin to manage and generate a nice image sliding effect in your site.
-<strong>[IMPORTANT] problem of exclusion images in the folder "files " after the update was corrected, the folder "files" was be replaced by "nivoslider4wp_files" out of plugin folder, the folder "nivoslider4wp_files" is located in "wp-content". COPY IMAGES OF FOLDER "files" TO FOLDER "nivoslider4wp_files".</strong>
 
 == Description ==
 
