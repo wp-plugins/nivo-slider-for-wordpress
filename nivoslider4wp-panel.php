@@ -6,8 +6,8 @@
 		$url = get_option('siteurl') . '/wp-content/plugins/' . plugin_basename(dirname(__FILE__));
 		$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/';
 		$ns4wp_pluginurl = $url;
-		$ns4wp_filesdir = ABSPATH.'/wp-content/nivoslider4wp_files/';
-		$ns4wp_filesurl = get_option('siteurl').'/wp-content/nivoslider4wp_files/';
+		$ns4wp_filesdir = ABSPATH.'/wp-content/uploads/nivoslider4wp_files/';
+		$ns4wp_filesurl = get_option('siteurl').'/wp-content/uploads/nivoslider4wp_files/';
 ?>
 <?php 
 		   $ns4wp_x = "empty"; 
@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $ns4wp_pluginurl; ?>/css/nivoslider4wp-painel.css" />
 <script type="text/javascript" src="<?php echo $ns4wp_pluginurl; ?>/js/functions.js"></script>
 <div class="wrap">
-<h2 id="all-schemes"><?php _e('Nivo Slider For WordPress - Add Image','nivoslider4wp'); ?></h2>
+<h2 id="all-schemes"><?php _e('Nivo Slider For WordPress - Add Image','nivoslider4wp'); ?></h2>			
   <?php
 
 		if (isset($_GET['remove'])) {
@@ -26,6 +26,22 @@
 			$wpdb->query("DELETE FROM {$wpdb->prefix}nivoslider4wp WHERE nivoslider4wp_id = $_GET[remove]");
 			if (is_file($ns4wp_filesdir.$_GET['remove'].'_o.'.$ns4wp_file_type)) { unlink($ns4wp_filesdir.$_GET['remove'].'_o.'.$ns4wp_file_type); }
 			if (is_file($ns4wp_filesdir.$_GET['remove'].'_s.'.$ns4wp_file_type)) { unlink($ns4wp_filesdir.$_GET['remove'].'_s.'.$ns4wp_file_type); }
+			unset($_GET);
+		}
+		
+		if (isset($_GET['disable'])) {
+			//$ns4wp_file_type = $wpdb->get_var("SELECT nivoslider4wp_type FROM {$wpdb->prefix}nivoslider4wp WHERE nivoslider4wp_id = '$_GET[disable]'");
+			$wpdb->query("UPDATE {$wpdb->prefix}nivoslider4wp SET nivoslider4wp_image_status=0 WHERE nivoslider4wp_id = $_GET[disable]");
+			//if (is_file($ns4wp_filesdir.$_GET['disable'].'_o.'.$ns4wp_file_type)) { unlink($ns4wp_filesdir.$_GET['disable'].'_o.'.$ns4wp_file_type); }
+			//if (is_file($ns4wp_filesdir.$_GET['disable'].'_s.'.$ns4wp_file_type)) { unlink($ns4wp_filesdir.$_GET['disable'].'_s.'.$ns4wp_file_type); }
+			unset($_GET);
+		}
+		
+		if (isset($_GET['enable'])) {
+			//$ns4wp_file_type = $wpdb->get_var("SELECT nivoslider4wp_type FROM {$wpdb->prefix}nivoslider4wp WHERE nivoslider4wp_id = '$_GET[disable]'");
+			$wpdb->query("UPDATE {$wpdb->prefix}nivoslider4wp SET nivoslider4wp_image_status=1 WHERE nivoslider4wp_id = $_GET[enable]");
+			//if (is_file($ns4wp_filesdir.$_GET['disable'].'_o.'.$ns4wp_file_type)) { unlink($ns4wp_filesdir.$_GET['disable'].'_o.'.$ns4wp_file_type); }
+			//if (is_file($ns4wp_filesdir.$_GET['disable'].'_s.'.$ns4wp_file_type)) { unlink($ns4wp_filesdir.$_GET['disable'].'_s.'.$ns4wp_file_type); }
 			unset($_GET);
 		}
 
@@ -77,12 +93,13 @@
 				'nivoslider4wp_w' => $_POST['w'],
 				'nivoslider4wp_h' => $_POST['h'],
 				'nivoslider4wp_text_headline' => $_POST['nivoslider4wp_file_text_headline'],
-				'nivoslider4wp_image_link' => $_POST['nivoslider4wp_image_link']
+				'nivoslider4wp_image_link' => $_POST['nivoslider4wp_image_link'],
+				'nivoslider4wp_image_status' => 1
 			);
 			
 			$conditions = array( 'nivoslider4wp_id' => $_POST['nivoslider4wp_file_id']);
 			
-			$values_types = array('%d','%d','%d','%d','%d','%d','%s','%s','%s');
+			$values_types = array('%d','%d','%d','%d','%d','%d','%s','%s','%s','%s');
 			$conditions_types = array('%d');
 			$wpdb->update($wpdb->prefix.'nivoslider4wp', $values, $conditions, $values_types, $conditions_types);
 			unset($_GET);
@@ -249,9 +266,9 @@
 	?>
 	<div class="alert"><?php _e('The dimensions of the slider (and the clipping of the image) are <strong>', 'nivoslider4wp'); ?><?php echo get_option('nivoslider4wp_width'); ?>px <?php _e('</strong>width, per <strong>', 'nivoslider4wp'); ?><?php echo get_option('nivoslider4wp_height'); ?>px <?php _e('</strong>height, to modify them go to the ', 'nivoslider4wp'); ?><a href="<?php echo get_option('siteurl');?>/wp-admin/admin.php?page=nivoslider4wp-options"><?php _e('options page', 'nivoslider4wp'); ?></a>.</div>
   <div class="tablenav">
-	<ul class="alignleft actions">
-			<li><a href="#add_new" class="button-secondary action" onClick="Show('nivoslider4wp_addnew'); return false;"><?php _e('Add New image','nivoslider4wp'); ?></a></li>
-		</ul>
+	<div class="alignleft actions">
+			<a href="#add_new" class="button-secondary action" onClick="Show('nivoslider4wp_addnew'); return false;"><?php _e('Add New image','nivoslider4wp'); ?></a>
+		</div>
   </div>
   <div id="nivoslider4wp_addnew" class="nivoslider4wp_box">
     <?php if (substr(decoct(fileperms($ns4wp_filesdir)),2) != '777') : ?>
@@ -272,21 +289,21 @@
     <?php endif; ?>
   </div>
   <div id="nivoslider4wp_images">
-    <table class="widefat post fixed" cellspacing="0">
+    <table class="widefat" cellspacing="0">
       <thead>
         <tr>
-          <th width="8%"  class="manage-column" style=""><?php _e('Order','nivoslider4wp'); ?></th>
-          <th width="30%" class="manage-column" style=""><?php _e('Image','nivoslider4wp'); ?></th>
-          <th width="50%" class="manage-column" style=""><?php _e('Caption and Link','nivoslider4wp'); ?></th>
-          <th width="12%" class="manage-column" style=""></td>
+          <th width="8%"  style=""><?php _e('Order','nivoslider4wp'); ?></th>
+          <th width="30%" style=""><?php _e('Image','nivoslider4wp'); ?></th>
+          <th width="50%" style=""><?php _e('Caption and Link','nivoslider4wp'); ?></th>
+          <th width="8%" style=""><?php _e('Action','nivoslider4wp'); ?></td>
         </tr>
       </thead>
       <tfoot>
         <tr>
-          <th scope="col" class="manage-column"><?php _e('Order','nivoslider4wp'); ?></th>
-          <th scope="col" class="manage-column"><?php _e('Image','nivoslider4wp'); ?></th>
-          <th scope="col" class="manage-column"><?php _e('Caption and Link','nivoslider4wp'); ?></th>
-          <th scope="col" class="manage-column"></td>
+          <th scope="col"><?php _e('Order','nivoslider4wp'); ?></th>
+          <th scope="col"><?php _e('Image','nivoslider4wp'); ?></th>
+          <th scope="col"><?php _e('Caption and Link','nivoslider4wp'); ?></th>
+          <th scope="col"></td>
         </tr>
       </tfoot>
       <script type="text/javascript" src="<?php echo $ns4wp_pluginurl; ?>/js/jquery.tablednd_0_5.js"></script>
@@ -319,28 +336,76 @@
         </style>		 
       <tbody id="table-1">
       
-        <?php $items = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}nivoslider4wp ORDER BY nivoslider4wp_order,nivoslider4wp_id ASC"); ?>
+		<?php $items = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}nivoslider4wp WHERE nivoslider4wp_image_status=1 OR nivoslider4wp_image_status IS NULL ORDER BY nivoslider4wp_order,nivoslider4wp_id ASC"); ?>
         <?php if ($items) : ?>
         <?php foreach ($items as $item) : ?>
         <tr>
-          <td class="manage-column column-numero orderNumber"><?php echo $item->nivoslider4wp_order; ?></td>
-          <td class="manage-column column-numero"><img width="80%" src="<?php echo $ns4wp_filesurl.$item->nivoslider4wp_id.'_s.'.$item->nivoslider4wp_type; ?>" /></td>
-          <td class="manage-column column-numero"><strong><?php echo stripslashes($item->nivoslider4wp_text_headline); ?></strong><br />
+		<td class="manage-column column-numero orderNumber"><?php echo $item->nivoslider4wp_order; ?></td>
+          <td><img width="80%" src="<?php echo $ns4wp_filesurl.$item->nivoslider4wp_id.'_s.'.$item->nivoslider4wp_type; ?>" /></td>
+          <td><strong><?php echo stripslashes($item->nivoslider4wp_text_headline); ?></strong><br />
 			<br />
 			<?php if($item->nivoslider4wp_image_link != ''){ ?>
 			<?php _e('Image Link to :','nivoslider4wp'); ?><a href="<?php echo stripslashes($item->nivoslider4wp_image_link); ?>"><?php echo stripslashes($item->nivoslider4wp_image_link); ?></a>
 			<?php } ?>
 			</td>
-          <td class="manage-column column-numero"><small> 
-		  <a href="admin.php?page=nivo-slider-for-wordpress/nivoslider4wp.php&edit=<?php echo $item->nivoslider4wp_id; ?>">
-            <?php _e('Edit','nivoslider4wp'); ?>
-            </a> | <a href="admin.php?page=nivo-slider-for-wordpress/nivoslider4wp.php&remove=<?php echo $item->nivoslider4wp_id; ?>">
-            <?php _e('Remove','nivoslider4wp'); ?>
-            </a><br/>
+          <td><small> 
+			<a href="admin.php?page=nivo-slider-for-wordpress/nivoslider4wp.php&edit=<?php echo $item->nivoslider4wp_id; ?>"><img src="<?php echo $ns4wp_pluginurl."/img/edit.png" ?>" alt="<?php _e('Edit','nivoslider4wp'); ?>" title="<?php _e('Edit','nivoslider4wp'); ?>" /></a>
+			<a href="admin.php?page=nivo-slider-for-wordpress/nivoslider4wp.php&remove=<?php echo $item->nivoslider4wp_id; ?>"><img src="<?php echo $ns4wp_pluginurl."/img/remove.png" ?>" alt="<?php _e('Remove','nivoslider4wp'); ?>" title="<?php _e('Remove','nivoslider4wp'); ?>" /></a>
+			<a href="admin.php?page=nivo-slider-for-wordpress/nivoslider4wp.php&disable=<?php echo $item->nivoslider4wp_id; ?>"><img src="<?php echo $ns4wp_pluginurl."/img/disable.png" ?>" alt="<?php _e('Disable','nivoslider4wp'); ?>" title="<?php _e('Disable','nivoslider4wp'); ?>" /></a>
             <form id="order_<?php echo $item->nivoslider4wp_id; ?>" name="order_<?php echo $item->nivoslider4wp_id; ?>" class="order" method="post">
-              <!--<input type="text" class="order_value" name="order_value" value="<?php /*echo $item->nivoslider4wp_order;*/ ?>" />-->
               <input type="hidden" name="order_id" value="<?php echo $item->nivoslider4wp_id; ?>" />
-              <!--<input type="submit" value="Save Order" />-->
+            </form>
+            </small></td>
+        </tr>
+        <?php endforeach; ?>
+        
+        <?php else : ?>
+        <tr>
+          <td colspan="3"><?php _e('No images uploaded yet.','nivoslider4wp'); ?></td>
+        </tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
+	<h3>Desabilitados</h3>
+	<?php $items_desable = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}nivoslider4wp WHERE nivoslider4wp_image_status=0 ORDER BY nivoslider4wp_order,nivoslider4wp_id ASC"); ?>
+	<table class="widefat disabled" cellspacing="0">
+      <thead>
+        <tr>
+          <th width="8%"  style=""><?php _e('Order','nivoslider4wp'); ?></th>
+          <th width="30%" style=""><?php _e('Image','nivoslider4wp'); ?></th>
+          <th width="50%" style=""><?php _e('Caption and Link','nivoslider4wp'); ?></th>
+          <th width="8%" style=""><?php _e('Action','nivoslider4wp'); ?></td>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th scope="col"><?php _e('Order','nivoslider4wp'); ?></th>
+          <th scope="col"><?php _e('Image','nivoslider4wp'); ?></th>
+          <th scope="col"><?php _e('Caption and Link','nivoslider4wp'); ?></th>
+          <th scope="col"></td>
+        </tr>
+      </tfoot>
+        <style>
+            .tDnD_whileDrag{background:#ececec;}
+        </style>		 
+      <tbody id="table-1">
+        <?php if ($items_desable) : ?>
+        <?php foreach ($items_desable as $item_desable) : ?>
+        <tr>
+		<td>x</td>
+          <td><img width="80%" src="<?php echo $ns4wp_filesurl.$item_desable->nivoslider4wp_id.'_s.'.$item_desable->nivoslider4wp_type; ?>" /></td>
+          <td><strong><?php echo stripslashes($item_desable->nivoslider4wp_text_headline); ?></strong><br />
+			<br />
+			<?php if($item_desable->nivoslider4wp_image_link != ''){ ?>
+			<?php _e('Image Link to :','nivoslider4wp'); ?><a href="<?php echo stripslashes($item_desable->nivoslider4wp_image_link); ?>"><?php echo stripslashes($item_desable->nivoslider4wp_image_link); ?></a>
+			<?php } ?>
+			</td>
+          <td><small> 
+			<a href="admin.php?page=nivo-slider-for-wordpress/nivoslider4wp.php&edit=<?php echo $item_desable->nivoslider4wp_id; ?>"><img src="<?php echo $ns4wp_pluginurl."/img/edit.png" ?>" alt="<?php _e('Edit','nivoslider4wp'); ?>" title="<?php _e('Edit','nivoslider4wp'); ?>" /></a>
+			<a href="admin.php?page=nivo-slider-for-wordpress/nivoslider4wp.php&remove=<?php echo $item_desable->nivoslider4wp_id; ?>"><img src="<?php echo $ns4wp_pluginurl."/img/remove.png" ?>" alt="<?php _e('Remove','nivoslider4wp'); ?>" title="<?php _e('Remove','nivoslider4wp'); ?>" /></a>
+			<a href="admin.php?page=nivo-slider-for-wordpress/nivoslider4wp.php&enable=<?php echo $item_desable->nivoslider4wp_id; ?>"><img src="<?php echo $ns4wp_pluginurl."/img/enable.png" ?>" alt="<?php _e('Enable','nivoslider4wp'); ?>" title="<?php _e('Enable','nivoslider4wp'); ?>" /></a>
+            <form id="order_<?php echo $item_desable->nivoslider4wp_id; ?>" name="order_<?php echo $item_desable->nivoslider4wp_id; ?>" class="order" method="post">
+              <input type="hidden" name="order_id" value="<?php echo $item_desable->nivoslider4wp_id; ?>" />
             </form>
             </small></td>
         </tr>

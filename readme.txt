@@ -2,8 +2,8 @@
 Donate link: http://www.marcelotorresweb.com/nivo-slider-for-wordpress/
 Tags: Nivo Slider, jquery, slide, javascript, animation, banner
 Requires at least: 3.0
-Tested up to: 3.1.2
-Stable tag: 0.3.2
+Tested up to: 3.2.1
+Stable tag: 0.3.3
 Contributors: marcelotorres
 
 Plugin to manage and generate a nice image sliding effect in your site.
@@ -62,3 +62,10 @@ Nothing here until now..
 * Added option for choose the images quality in cutting
 * Added JQuery noConflict in script of Nivo Slider
 * ...And fixed other small bugs and updates
+
+= 0.3.3 =
+
+* Added desable image option
+* Enqueue jquery correctly
+* Update NivoSlider JQuery Plugin
+* Automatic placing the folder 'nivoslider4wp_files' in the folder 'uploads'

@@ -1,4 +1,11 @@
 .nivoslider4wp_box { margin:10px 0px;}
+table.disabled td{background-color:#ccc;}
+table.disabled caption{padding:15px;background-color:#ccc;-webkit-border-top-left-radius: 5px;
+-webkit-border-top-right-radius: 5px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright: 5px;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;}
 #nivoslider4wp_addnew { display:none; }
 #nivoslider4wp_options small{margin:10px;}
 #nivoslider4wp_options input { width:70px;}

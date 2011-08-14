@@ -9,8 +9,8 @@
 		}
 		$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/';
 		$ns4wp_pluginurl = $url;
-		$ns4wp_filesdir = ABSPATH.'/wp-content/nivoslider4wp_files/';
-		$ns4wp_filesurl = get_option('siteurl').'/wp-content/nivoslider4wp_files/';
+		$ns4wp_filesdir = ABSPATH.'/wp-content/uploads/nivoslider4wp_files/';
+		$ns4wp_filesurl = get_option('siteurl').'/wp-content/uploads/nivoslider4wp_files/';
 ?>
 
 <!-- importa o css da area administrativa, assim como o jquery-->
@@ -62,6 +62,7 @@ var $z = jQuery.noConflict();
 	update_option('nivoslider4wp_pauseTime', $_POST['nivoslider4wp_pauseTime']);			
 	update_option('nivoslider4wp_directionNav', $_POST['nivoslider4wp_directionNav']);			
 	update_option('nivoslider4wp_directionNavHide', $_POST['nivoslider4wp_directionNavHide']);			
+	update_option('nivoslider4wp_controlNav', $_POST['nivoslider4wp_controlNav']);			
 	update_option('nivoslider4wp_keyboardNav', $_POST['nivoslider4wp_keyboardNav']);			
 	update_option('nivoslider4wp_pauseOnHover', $_POST['nivoslider4wp_pauseOnHover']);			
 	update_option('nivoslider4wp_manualAdvance', $_POST['nivoslider4wp_manualAdvance']);			
@@ -156,6 +157,11 @@ if (isset($_POST['options'])) {
 				<input type="radio" name="nivoslider4wp_directionNavHide" class="radiocheck" id="nivoslider4wp_directionNavHide" value="false" <?php if(get_option('nivoslider4wp_directionNavHide') == 'false'){echo 'checked';}?> /><?php _e('Disable','nivoslider4wp'); ?>
 			</p>
 			<p>
+			<?php _e('Show the navigation bullets ','nivoslider4wp'); ?>:
+				<input type="radio" name="nivoslider4wp_controlNav" class="radiocheck" id="nivoslider4wp_controlNav" value="true" <?php if(get_option('nivoslider4wp_controlNav') == 'true'){echo 'checked';}?> /><?php _e('Enable','nivoslider4wp'); ?>
+				<input type="radio" name="nivoslider4wp_controlNav" class="radiocheck" id="nivoslider4wp_controlNav" value="false" <?php if(get_option('nivoslider4wp_controlNav') == 'false'){echo 'checked';}?> /><?php _e('Disable','nivoslider4wp'); ?>
+			</p>
+			<p>
 			<?php _e('Use left & right on keyboard','nivoslider4wp'); ?>:
 				<input type="radio" name="nivoslider4wp_keyboardNav" class="radiocheck" id="nivoslider4wp_keyboardNav" value="true" <?php if(get_option('nivoslider4wp_keyboardNav') == 'true'){echo 'checked';}?> /><?php _e('Enable','nivoslider4wp'); ?>
 				<input type="radio" name="nivoslider4wp_keyboardNav" class="radiocheck" id="nivoslider4wp_keyboardNav" value="false" <?php if(get_option('nivoslider4wp_keyboardNav') == 'false'){echo 'checked';}?> /><?php _e('Disable','nivoslider4wp'); ?>
@@ -197,7 +203,7 @@ if (isset($_POST['options'])) {
   <div id="nivoslider4wp_credits" class="nivoslider4wp_box">
 	<h3><?php _e('Credits and Donation','nivoslider4wp'); ?></h3>
 	<ul>
-		<li><?php _e('Developed by: ','nivoslider4wp'); ?> Marcelo Torres - <a href="http://nivo.dev7studios.com/" target="_blank">http://www.marcelotorresweb.com/</a><li>
+		<li><?php _e('Developed by: ','nivoslider4wp'); ?> Marcelo Torres - <a href="http://www.marcelotorresweb.com/" target="_blank">http://www.marcelotorresweb.com/</a><li>
 		<li><?php _e('Jquery Nivo Slider by: ','nivoslider4wp'); ?><a href="http://nivo.dev7studios.com/" target="_blank"> http://nivo.dev7studios.com/</a><li>
 		<li><?php _e('JPicker Plugin by: ','nivoslider4wp'); ?><a href="http://www.digitalmagicpro.com/jPicker/" target="_blank"> http://www.digitalmagicpro.com/jPicker/</a><li>
 		<li><?php _e('This plugin has been helpful to you? How about making a donation and encourage me to develop other plugins? ','nivoslider4wp'); ?></li>

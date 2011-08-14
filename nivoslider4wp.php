@@ -2,7 +2,7 @@
 	/*
 	Plugin Name: Nivo Slider for WordPress
 	Description: Nivo Slider for WordPress plugin is based on S3Slider developed by Vinicius Massuchetto, adapted for their use JQuery plugin NivoSlider.
-	Version: 0.3.2
+	Version: 0.3.3
 	Author: Marcelo Torres
 	Author URI: http://www.marcelotorresweb.com/
 	*/
@@ -11,28 +11,91 @@
 		$url = plugins_url(plugin_basename(dirname(__FILE__)));
 	else
 		$url = get_option('siteurl') . '/wp-content/plugins/' . plugin_basename(dirname(__FILE__));
-		
 	add_action('admin_menu', 'nivoslider4wp_install');
-
 	global $ns4wp_plugindir;
-	
 	$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/';
-	
 	load_plugin_textdomain ( 'nivoslider4wp' , false, 'nivo-slider-for-wordpress/lang'  );
 	
 	function nivoslider4wp_install() {
-	$nivoslider4wp_files = ABSPATH."wp-content/nivoslider4wp_files";
+	$nivoslider4wp_files = ABSPATH."wp-content/uploads/nivoslider4wp_files";
+	$nivoslider4wp_files_old = ABSPATH."wp-content/nivoslider4wp_files";
 
+	/* Cria a pasta (nivoslider4wp_files), onde ficarão as images do upload*/
 	if (!file_exists($nivoslider4wp_files)) {
 		umask(0); 
-		mkdir($nivoslider4wp_files, 0777, true) or die("erro ao criar a pasta em" . $nivoslider4wp_files);
+		mkdir($nivoslider4wp_files, 0777, true) or die("error creating the folder" . $nivoslider4wp_files . "check folder permissions");
 	}
+	
+	/* função para copiar o diretório inteiro */
+	function copyr($source, $dest)
+	{
+	   if (is_file($source)) {
+		  return copy($source, $dest);
+	   }	 
+	   if (!is_dir($dest)) {
+		  mkdir($dest);
+	   }	 
+	   $dir = dir($source);
+	   while (false !== $entry = $dir->read()) {
+		  if ($entry == '.' || $entry == '..') {
+			 continue;
+		  }	 
+		  if ($dest !== "$source/$entry") {
+			 copyr("$source/$entry", "$dest/$entry");
+		  }
+	   }
+	   $dir->close();
+	   return true;
+	}
+	
+	if (file_exists($nivoslider4wp_files_old)) {
+		umask(0); 
+		copyr($nivoslider4wp_files_old, $nivoslider4wp_files) or die("error moving the folder" . $nivoslider4wp_files . "check folder permissions");
+	}
+	
+	/* função para apagar o diretório inteiro */
+	function rmdir_r($path)
+	{
+		if (!is_dir($path))
+		{
+			return false;
+		}
+		if (!preg_match("/\\/$/", $path))
+		{
+			$path .= '/';
+		}
+		$dh = opendir($path);
+
+		while (($file = readdir($dh)) !== false)
+		{
+			if ($file == '.'  ||  $file == '..')
+			{
+				continue;
+			}
+			if (is_dir($path . $file))
+			{
+				rmdir_r($path . $file);
+			}
+			else if (is_file($path . $file))
+			{
+				unlink($path . $file);
+			}
+		}
+		closedir($dh);
+		rmdir($path);
+		return true;
+	}
+	
+	if (file_exists($nivoslider4wp_files_old)) {
+		rmdir_r($nivoslider4wp_files_old) or die("error when deleting a folder" . $nivoslider4wp_files_old . "check folder permissions");
+	}
+	
 		global $wpdb;
 		/*adiciona menu e submenus*/
 		add_menu_page('Nivo Slider for WordPress', __('Nivo Slider For WordPress'), 'read', __FILE__, 'nivoslider4wp_panel', get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/img/menu.png');
 		$plugin_addimages = add_submenu_page(__FILE__ , __('Add/Edit image', 'nivoslider4wp'), __('Add/Edit image', 'nivoslider4wp'), 'read', 'nivo-slider-for-wordpress/nivoslider4wp.php');
 		$plugin_options = add_submenu_page(__FILE__ , __('Options', 'nivoslider4wp'), __('Options', 'nivoslider4wp'), 'read', 'nivoslider4wp-options', 'nivoslider4wp_option');
-
+	
 		/*cria tabela no banco de dados*/
 		$query = "CREATE TABLE IF NOT EXISTS `{$wpdb->prefix}nivoslider4wp` (
 			`nivoslider4wp_id` INT NOT NULL AUTO_INCREMENT,
@@ -50,17 +113,19 @@
 		PRIMARY KEY ( `nivoslider4wp_id` ));";
 		$wpdb->query($query);
 
-		/* cria as op&ccedil;&otilde;es no banco de dados e guarda um valor padr&atilde;o para campo da pagina de op&ccedil;&otilde;es*/
+		/* cria as opçoes no banco de dados e guarda um valor padr&atilde;o para campo da pagina de op&ccedil;&otilde;es*/
 		add_option('nivoslider4wp_width', 640);
 		add_option('nivoslider4wp_height', 219);
 		
 		add_option('nivoslider4wp_colsBox', 4);
 		add_option('nivoslider4wp_rowsBox', 2);
 		add_option('nivoslider4wp_animSpeed', 500);
+		/*add_option('nivoslider4wp_themes', 'notheme');*/
 		add_option('nivoslider4wp_effect', 'random');
 		add_option('nivoslider4wp_pauseTime', 3000);
 		add_option('nivoslider4wp_directionNav', 'true');
 		add_option('nivoslider4wp_directionNavHide', 'true');
+		add_option('nivoslider4wp_controlNav', 'false');
 		add_option('nivoslider4wp_keyboardNav', 'true');
 		add_option('nivoslider4wp_pauseOnHover', 'true');
 		add_option('nivoslider4wp_manualAdvance', 'false');
@@ -74,7 +139,7 @@
 		
 		/* Add contextual Help $plugin_addimages */
 		if (function_exists('add_contextual_help')) {
-			add_contextual_help( $plugin_addimages, '<h2 style="font-weight:lighter;">'. __('Nivo Slider for WordPress - Help > Add image', 'nivoslider4wp') .'</h2>'.
+			add_contextual_help( $plugin_manageslider, '<h2 style="font-weight:lighter;">'. __('Nivo Slider for WordPress - Help > Add image', 'nivoslider4wp') .'</h2>'.
 				'<dl><dt><strong>'. __('Adding images:', 'nivoslider4wp') .'</strong></dt>'.
 				'<dd>'. __('To add a new image on your slider, click in buttom <em>Add new image</em>, then select the desired image(are supported JPG, PNG and GIF) and then click the button <em>send and edit image', 'nivoslider4wp') .'</em>.</dd>' .	
 				'<dt><strong>'. __('Image setting:', 'nivoslider4wp') .'</strong></dt>' .
@@ -106,6 +171,8 @@
 					'<dd>'. __('If this option is enabled, the use of arrows to advance or move back to the images on the slider will appear.', 'nivoslider4wp') .'</dd>'.
 				'<dt><strong>'. __('Show navigation arrows only when the mouse is on the slide:', 'nivoslider4wp') .'</strong></dt>'.
 					'<dd>'. __('If this option is enabled, the navigation arrows will only appear when the mouse cursor is on the slider.', 'nivoslider4wp') .'</dd>'.
+				'<dt><strong>'. __('Show the navigation bullets:', 'nivoslider4wp') .'</strong></dt>'.
+					'<dd>'. __('If this option is enabled, the user can move forward or backward through the images also utilize the bullets below the slider', 'nivoslider4wp') .'</dd>'.
 				'<dt><strong>'. __('Use left and right on the keyboard:', 'nivoslider4wp') .'</strong></dt>'.
 					'<dd>'. __('If this option is enabled, the user can move forward or backward through the images of the slider left navigation arrows (&larr;) and right (&rarr;) on the keyboard.', 'nivoslider4wp') .'</dd>'.
 				'<dt><strong>'. __('Stop the animation while the mouse is on the slide:', 'nivoslider4wp') .'</strong></dt>'.

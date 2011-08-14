@@ -8,12 +8,12 @@
 		global $wpdb;
 		$ns4wp_plugindir = ABSPATH.'wp-content/plugins/nivo-slider-for-wordpress/';
 		$ns4wp_pluginurl = $url;
-		$ns4wp_filesdir = ABSPATH.'/wp-content/nivoslider4wp_files/';
-		$ns4wp_filesurl = get_option('siteurl').'/wp-content/nivoslider4wp_files/';
+		$ns4wp_filesdir = ABSPATH.'/wp-content/uploads/nivoslider4wp_files/';
+		$ns4wp_filesurl = get_option('siteurl').'/wp-content/uploads/nivoslider4wp_files/';
 
 	?>
-		<div id="slider">
-				<?php $items = $wpdb->get_results("SELECT nivoslider4wp_id,nivoslider4wp_type,nivoslider4wp_text_headline,nivoslider4wp_image_link FROM {$wpdb->prefix}nivoslider4wp ORDER BY nivoslider4wp_order,nivoslider4wp_id"); ?>
+	<div id="slider">
+				<?php $items = $wpdb->get_results("SELECT nivoslider4wp_id,nivoslider4wp_type,nivoslider4wp_text_headline,nivoslider4wp_image_link,nivoslider4wp_image_status FROM {$wpdb->prefix}nivoslider4wp WHERE nivoslider4wp_image_status = 1 OR nivoslider4wp_image_status IS NULL ORDER BY nivoslider4wp_order,nivoslider4wp_id"); ?>
 				<?php foreach($items as $item) : ?>
 						<?php
 						if(!$item->nivoslider4wp_image_link){ ?>
@@ -28,8 +28,8 @@
 
 	/*conteudo que ora para dentro do <head>*/
 	function js_NivoSlider(){
+		wp_enqueue_script('jquery'); 
 	?>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 		<script type="text/javascript" src="<?php echo get_option('siteurl') . '/wp-content/plugins/nivo-slider-for-wordpress/js/jquery.nivo.slider.pack.js';?>"></script>
 		<script type="text/javascript">
 		var $nv4wp = jQuery.noConflict();
