@@ -8,11 +8,10 @@ Contributors: marcelotorres
 
 Plugin to manage and generate a nice image sliding effect in your site.
 
--> <strong>Atenção: O plugin está sendo descontinuado, mas pretendo em breve lançar ouro plugin semelhante com melhor suporte com o WordPress 3.5 e um melhor código!</strong>
-
--> <strong>Warning: The plugin is being discontinued, but I intend to soon launch similar gold plugin with better support with WordPress 3.5 and better code!</strong>
-
 == Description ==
+
+<strong>Atenção: O plugin está sendo descontinuado, mas pretendo em breve lançar ouro plugin semelhante com melhor suporte com o WordPress 3.5 e um melhor código!</strong>
+<strong>Warning: The plugin is being discontinued, but I intend to soon launch similar gold plugin with better support with WordPress 3.5 and better code!</strong>
 
 Nivo Slider for WordPress plugin is based on S3Slider developed by Vinicius Massuchetto, adapted for their use <a href="http://nivo.dev7studios.com/">JQuery Nivo Slider</a>.
 
