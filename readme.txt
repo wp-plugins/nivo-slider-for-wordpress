@@ -10,7 +10,7 @@ Plugin to manage and generate a nice image sliding effect in your site.
 
 == Description ==
 
-<strong>Aten&ccedil;&atilde;o: O plugin est&aacute; sendo descontinuado, mas voc&circ; pode usar o <a href="http://wordpress.org/plugins/simple-responsive-slider/">Simple Responsive Slider</a> no lugar! :)</strong>
+<strong>Aten&ccedil;&atilde;o: O plugin est&aacute; sendo descontinuado, mas voc&ecirc; pode usar o <a href="http://wordpress.org/plugins/simple-responsive-slider/">Simple Responsive Slider</a> no lugar! :)</strong><br /><br />
 <strong>Warning: The plugin is being discontinued, but you can use the <a href="http://wordpress.org/plugins/simple-responsive-slider/">Simple Responsive Slider</a></strong>
 
 == Installation ==
