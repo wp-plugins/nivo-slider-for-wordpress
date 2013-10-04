@@ -11,7 +11,14 @@ Plugin to manage and generate a nice image sliding effect in your site.
 == Description ==
 
 <strong>Aten&ccedil;&atilde;o: O plugin est&aacute; sendo descontinuado, mas voc&ecirc; pode usar o <a href="http://wordpress.org/plugins/simple-responsive-slider/">Simple Responsive Slider</a> no lugar! :)</strong><br /><br />
-<strong>Warning: The plugin is being discontinued, but you can use the <a href="http://wordpress.org/plugins/simple-responsive-slider/">Simple Responsive Slider</a></strong>
+<strong>Warning: The plugin is being discontinued, but you can use the <a href="http://wordpress.org/plugins/simple-responsive-slider/">Simple Responsive Slider</a></strong><br /><br />
+
+Nivo Slider for WordPress plugin is based on S3Slider developed by Vinicius Massuchetto, adapted for their use <a href="http://nivo.dev7studios.com/">JQuery Nivo Slider</a>.
+
+1. Upload and crop images, define captions and links;
+2. Set the size, order, timout of the slider, transition effect, slide transition speed, Pause time between the transitions, background color caption, text color caption, opacity background color caption;
+3. Enable or disable navigation arrows, use left & right on keyboard, Show only the navigation arrows when mouse is on the slide, Stop animation while the mouse is on the slide, Force manual transitions;
+4. Edit a text to be shown on each image;
 
 == Installation ==
 
